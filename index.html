@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#B9A7E8">
+  <meta name="description" content="DayBloom — a gentle space to plan your day, build habits and reach your goals.">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="DayBloom">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="icon" href="./icons/icon-192.png" type="image/png">
+  <title>DayBloom — Your gentle daily planner</title>
+  <style>
+    :root{--lav:#b9a7e8;--lav-dark:#8069b7;--pink:#f5dce9;--cream:#fff9f1;--paper:#fff;--ink:#302b3b;--muted:#817b8d;--line:#eee8f3;--green:#7da991;--shadow:0 8px 28px rgba(83,62,115,.08);--radius:20px}
+    *{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#fbf7ff 0%,#fff9f5 65%,#fff 100%);color:var(--ink);font:15px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+    button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid #c9b9f1;outline-offset:2px}
+    .app{max-width:1120px;margin:auto;padding:18px 16px 100px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:15px;background:linear-gradient(135deg,#c8b8f0,#f4cfe1);display:grid;place-items:center;font-size:25px;box-shadow:var(--shadow)}h1{font-size:22px;margin:0;letter-spacing:-.5px}.tagline{font-size:12px;color:var(--muted)}.date-chip{border:1px solid var(--line);background:#fff;padding:9px 12px;border-radius:14px;color:var(--muted);font-size:12px}
+    .layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:20px}.sidebar{background:rgba(255,255,255,.8);border:1px solid var(--line);border-radius:var(--radius);padding:14px;height:max-content;position:sticky;top:14px}.nav{display:grid;gap:6px}.nav button{border:0;background:transparent;color:var(--muted);text-align:left;padding:12px;border-radius:13px;font-weight:600}.nav button.active,.nav button:hover{background:#f2edfb;color:var(--lav-dark)}.main{min-width:0}.view{display:none}.view.active{display:block}.welcome{background:linear-gradient(115deg,#e9e1fa,#fbe6ef 75%,#fff4e8);border-radius:24px;padding:24px;margin-bottom:18px;box-shadow:var(--shadow)}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:1.2px;color:#76639e;font-weight:700}.welcome h2{font-size:27px;line-height:1.2;margin:7px 0}.welcome p{margin:5px 0;color:#625a70}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);margin-bottom:14px;min-width:0}.card h3{font-size:16px;margin:0 0 12px}.stat{font-size:28px;font-weight:750;letter-spacing:-1px}.muted{color:var(--muted)}.small{font-size:12px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.row.wrap{flex-wrap:wrap}.btn{border:0;border-radius:13px;background:#eee8fb;color:#6f5b9e;padding:10px 14px;font-weight:650}.btn.primary{background:var(--lav-dark);color:#fff}.btn.soft{background:#fff0f5;color:#9d6684}.btn.danger{background:#fff0ef;color:#a34d4a}.btn.ghost{background:#f7f5f9;color:#615a6d}.btn:disabled{opacity:.45;cursor:not-allowed}.actions{display:flex;gap:8px;flex-wrap:wrap}.progress{height:9px;background:#f0edf4;border-radius:99px;overflow:hidden;margin:9px 0}.progress span{display:block;height:100%;background:linear-gradient(90deg,#a894df,#e8aeca);border-radius:99px}.field{display:grid;gap:5px;margin:10px 0}.field label{font-size:12px;font-weight:700;color:#6e667b}.field input,.field textarea,.field select{width:100%;border:1px solid #e8e1ee;border-radius:12px;padding:11px 12px;background:#fff;color:var(--ink)}textarea{min-height:100px;resize:vertical}.list{display:grid;gap:9px}.item{display:flex;align-items:flex-start;gap:10px;border:1px solid #f0ebf3;border-radius:14px;padding:11px}.item .grow{flex:1;min-width:0}.item.done .item-title{text-decoration:line-through;color:#aaa}.item-title{font-weight:650;overflow-wrap:anywhere}.pill{display:inline-block;background:#f3effa;color:#76639e;border-radius:99px;padding:3px 8px;font-size:11px}.empty{padding:20px;text-align:center;color:var(--muted);background:#faf8fc;border-radius:14px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.form-grid .field{margin:0}.section-title{margin:0 0 14px;font-size:22px}.habit-day{display:flex;gap:6px;align-items:center}.habit-day span{font-size:11px;color:var(--muted)}.habit-day input{accent-color:var(--lav-dark)}.notice{padding:11px 13px;border-radius:13px;background:#f5f0ff;color:#65538d;font-size:13px;margin:10px 0}.notice.warn{background:#fff5e8;color:#8a6335}.notice.good{background:#edf7f0;color:#4e795d}.bottom-nav{display:none}.toast{position:fixed;bottom:85px;left:50%;transform:translateX(-50%);background:#302b3b;color:white;padding:10px 15px;border-radius:99px;font-size:13px;opacity:0;pointer-events:none;transition:.2s;z-index:20}.toast.show{opacity:1}.modal-back{position:fixed;inset:0;background:#241b2e66;display:none;place-items:center;padding:18px;z-index:30}.modal-back.open{display:grid}.modal{background:#fff;border-radius:22px;padding:20px;width:min(520px,100%);max-height:90vh;overflow:auto}.modal h3{margin-top:0}.schedule-slot{border-left:3px solid var(--lav);padding:8px 12px;margin:8px 0;background:#faf8fd;border-radius:0 12px 12px 0}.footer-note{text-align:center;color:#a09aa8;font-size:11px;margin:24px 0}
+    @media(max-width:760px){.app{padding:13px 12px 95px}.layout{display:block}.sidebar{display:none}.grid{gap:10px}.card{padding:15px}.welcome{padding:20px}.welcome h2{font-size:24px}.bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;bottom:0;left:0;right:0;background:#fffF;border-top:1px solid var(--line);backdrop-filter:blur(14px);padding:8px 5px max(8px,env(safe-area-inset-bottom));z-index:10}.bottom-nav button{border:0;background:transparent;color:var(--muted);font-size:10px;padding:5px 2px;display:grid;gap:2px;justify-items:center}.bottom-nav button.active{color:var(--lav-dark);font-weight:750}.bottom-nav b{font-size:18px}.date-chip{font-size:10px}.form-grid{grid-template-columns:1fr}.toast{bottom:90px}}
+    @media(min-width:761px){.bottom-nav{display:none}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><div class="logo" aria-hidden="true">✿</div><div><h1>DayBloom</h1><div class="tagline">A little progress, every day</div></div></div>
+    <div class="date-chip" id="todayLabel"></div>
+  </header>
+  <div class="layout">
+    <aside class="sidebar"><div class="nav" id="sideNav">
+      <button data-page="home" class="active">⌂ &nbsp; Home</button><button data-page="planner">▦ &nbsp; Planner</button><button data-page="habits">♡ &nbsp; Habits</button><button data-page="goals">✧ &nbsp; Goals</button><button data-page="notes">✎ &nbsp; Notes</button><button data-page="assistant">☼ &nbsp; AI planner <span class="pill">Demo</span></button><button data-page="profile">⚙ &nbsp; Profile & settings</button>
+    </div></aside>
+    <main class="main">
+      <section class="view active" id="page-home">
+        <div class="welcome"><div class="eyebrow" id="welcomeDate">YOUR DAY, YOUR PACE</div><h2 id="hello">A fresh start awaits ✨</h2><p>Small steps make lovely things happen.</p><div class="actions" style="margin-top:14px"><button class="btn primary" data-page="planner">Plan my day</button><button class="btn" data-page="assistant">Try daily assistant</button></div></div>
+        <div class="grid">
+          <div class="card"><div class="muted small">TASKS COMPLETED</div><div class="stat" id="taskStat">0/0</div><div class="progress"><span id="taskProgress" style="width:0%"></span></div><div class="small muted">One step at a time</div></div>
+          <div class="card"><div class="muted small">ACTIVE HABITS</div><div class="stat" id="habitStat">0</div><div class="small muted">Keep your gentle rhythm</div></div>
+        </div>
+        <div class="card"><div class="row"><h3>Today's tasks</h3><button class="btn" data-page="planner">View planner</button></div><div class="list" id="homeTasks"></div></div>
+        <div class="card"><div class="row"><h3>Your goals</h3><button class="btn" data-page="goals">View goals</button></div><div class="list" id="homeGoals"></div></div>
+      </section>
+      <section class="view" id="page-planner"><div class="row wrap"><h2 class="section-title">Daily planner</h2><button class="btn primary" id="addTaskBtn">＋ Add task</button></div><div class="card"><div class="row wrap"><div><h3 style="margin:0">Your schedule</h3><div class="muted small">Choose a date to see its tasks</div></div><input type="date" id="plannerDate" aria-label="Planner date"></div></div><div class="card"><div class="list" id="taskList"></div></div></section>
+      <section class="view" id="page-habits"><div class="row wrap"><h2 class="section-title">Habit garden</h2><button class="btn primary" id="addHabitBtn">＋ Add habit</button></div><div class="notice">Celebrate consistency, not perfection. Tap a circle to mark today's habit.</div><div class="list" id="habitList"></div></section>
+      <section class="view" id="page-goals"><div class="row wrap"><h2 class="section-title">Your goals</h2><button class="btn primary" id="addGoalBtn">＋ Add goal</button></div><div class="list" id="goalList"></div></section>
+      <section class="view" id="page-notes"><div class="row wrap"><h2 class="section-title">Notes & ideas</h2><button class="btn primary" id="addNoteBtn">＋ New note</button></div><div class="list" id="noteList"></div></section>
+      <section class="view" id="page-assistant"><h2 class="section-title">Daily planning assistant</h2><div class="notice"><strong>Demo mode</strong> · This planner runs on your device using simple scheduling rules. It does not connect to an AI service or send your information anywhere.</div><div class="card"><div class="form-grid"><div class="field"><label for="assistDate">Date</label><input type="date" id="assistDate"></div><div class="field"><label for="assistStart">Start time</label><input type="time" id="assistStart" value="09:00"></div><div class="field"><label for="assistHours">Available hours</label><input type="number" id="assistHours" min="1" max="16" step=".5" value="6"></div></div><div class="field"><label for="assistTasks">Tasks (one per line: task | minutes | priority)</label><textarea id="assistTasks" placeholder="Study maths | 60 | High&#10;Tidy desk | 20 | Low&#10;Read a chapter | 30 | Medium"></textarea></div><button class="btn primary" id="generateSchedule">Create suggested schedule</button></div><div class="card" id="assistantResult"><div class="empty">Your suggested plan will appear here. You can review it before saving.</div></div></section>
+      <section class="view" id="page-profile"><h2 class="section-title">Profile & settings</h2><div class="card"><h3>Your profile</h3><div class="field"><label for="profileName">Your name</label><input id="profileName" maxlength="50" placeholder="What should we call you?"></div><button class="btn primary" id="saveProfile">Save profile</button></div><div class="card"><h3>Your data</h3><p class="muted small">Your information is stored in this browser on this device. Export a backup regularly. Importing a backup requires confirmation before existing information is replaced.</p><div class="actions"><button class="btn primary" id="exportData">Export JSON backup</button><button class="btn" id="importDataBtn">Import JSON backup</button><input type="file" id="importFile" accept=".json,application/json" hidden></div><div class="notice warn">Clearing browser data or using a different browser/device may remove access to locally saved information. Keep your backup somewhere safe.</div></div><div class="card"><h3>App updates</h3><p class="muted small" id="updateStatus">Checking for updates…</p><button class="btn" id="updateAppBtn" hidden>Install update</button></div><div class="card"><h3>About DayBloom</h3><p class="muted small">A calm space for plans, habits, notes and goals. No account or paid API required.</p><button class="btn danger" id="resetData">Reset all DayBloom data</button></div></section>
+    </main>
+  </div>
+  <nav class="bottom-nav" id="bottomNav"><button data-page="home" class="active"><b>⌂</b>Home</button><button data-page="planner"><b>▦</b>Planner</button><button data-page="habits"><b>♡</b>Habits</button><button data-page="goals"><b>✧</b>Goals</button><button data-page="profile"><b>⚙</b>Settings</button></nav>
+  <div class="footer-note">Made for gentle progress · Your data stays on this device</div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="modal-back" id="modalBack"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="row"><h3 id="modalTitle">Add item</h3><button class="btn ghost" id="closeModal" aria-label="Close">✕</button></div><div id="modalBody"></div></div></div>
+<script>
+(() => {
+  "use strict";
+  const STORAGE_KEY = "daybloom-v1";
+  const today = () => new Date().toISOString().slice(0,10);
+  const uid = () => (crypto.randomUUID ? crypto.randomUUID() : "db-" + Date.now() + "-" + Math.random().toString(16).slice(2));
+  const $ = id => document.getElementById(id);
+  const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const defaults = () => ({tasks:[],habits:[],notes:[],goals:[],dailySchedules:{},profile:{name:""},settings:{},});
+  let db = loadData(), plannerDate = today(), pendingWorker = null, draftSchedule = [];
+  function loadData(){
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return defaults();
+      const parsed = JSON.parse(raw);
+      if(!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return defaults();
+      // Keep unknown top-level fields to avoid discarding data from earlier DayBloom versions.
+      return {...defaults(), ...parsed,
+        tasks:Array.isArray(parsed.tasks)?parsed.tasks:[],
+        habits:Array.isArray(parsed.habits)?parsed.habits:[],
+        notes:Array.isArray(parsed.notes)?parsed.notes:[],
+        goals:Array.isArray(parsed.goals)?parsed.goals:[],
+        dailySchedules:parsed.dailySchedules && typeof parsed.dailySchedules==="object"?parsed.dailySchedules:{},
+        profile:parsed.profile && typeof parsed.profile==="object"?parsed.profile:{name:""}
+      };
+    } catch(e){ console.error("Could not read DayBloom data",e); return defaults(); }
+  }
+  function saveData(){ try{localStorage.setItem(STORAGE_KEY,JSON.stringify(db));}catch(e){alert("DayBloom could not save. Your browser storage may be full. Export a backup and try again.");console.error(e);} }
+  function toast(msg){$("toast").textContent=msg;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2300);}
+  function setPage(page){
+    document.querySelectorAll(".view").forEach(v=>v.classList.toggle("active",v.id==="page-"+page));
+    document.querySelectorAll("[data-page]").forEach(b=>b.classList.toggle("active",b.dataset.page===page));
+    if(page==="home")renderHome(); if(page==="planner")renderTasks(); if(page==="habits")renderHabits(); if(page==="goals")renderGoals(); if(page==="notes")renderNotes(); if(page==="profile")renderProfile();
+    window.scrollTo({top:0,behavior:"smooth"});
+  }
+  function openModal(title,html,onSave){$("modalTitle").textContent=title;$("modalBody").innerHTML=html;$("modalBack").classList.add("open");$("modalSave")?.addEventListener("click",()=>{if(onSave())$("modalBack").classList.remove("open");});}
+  function closeModal(){$("modalBack").classList.remove("open");}
+  function renderHome(){
+    const tasks=db.tasks.filter(t=>(t.date||today())===today()), done=tasks.filter(t=>t.completed).length;
+    $("taskStat").textContent=done+"/"+tasks.length;$("taskProgress").style.width=(tasks.length?done/tasks.length*100:0)+"%";
+    $("habitStat").textContent=db.habits.length;
+    $("hello").textContent=db.profile.name?`A lovely day, ${db.profile.name} ✨`:"A fresh start awaits ✨";
+    $("welcomeDate").textContent=new Date().toLocaleDateString(undefined,{weekday:"long",month:"long",day:"numeric"}).toUpperCase();
+    $("homeTasks").innerHTML=tasks.length?tasks.slice(0,5).map(t=>`<div class="item ${t.completed?"done":""}"><input type="checkbox" data-task-check="${esc(t.id)}" ${t.completed?"checked":""} aria-label="Complete ${esc(t.title)}"><div class="grow"><div class="item-title">${esc(t.title)}</div><div class="small muted">${esc(t.time||"No time set")}</div></div></div>`).join(""):'<div class="empty">No tasks planned for today. Add one when you are ready.</div>';
+    $("homeGoals").innerHTML=db.goals.length?db.goals.slice(0,3).map(g=>`<div><div class="row"><strong>${esc(g.title)}</strong><span class="small muted">${Number(g.progress)||0}%</span></div><div class="progress"><span style="width:${Math.min(100,Math.max(0,Number(g.progress)||0))}%"></span></div></div>`).join(""):'<div class="empty">Your goals will bloom here.</div>';
+  }
+  function renderTasks(){
+    $("plannerDate").value=plannerDate;
+    const tasks=db.tasks.filter(t=>(t.date||today())===plannerDate);
+    $("taskList").innerHTML=tasks.length?tasks.map(t=>`<div class="item ${t.completed?"done":""}"><input type="checkbox" data-task-check="${esc(t.id)}" ${t.completed?"checked":""} aria-label="Complete task"><div class="grow"><div class="item-title">${esc(t.title)}</div><div class="small muted">${esc(t.time||"No time")} · ${esc(t.priority||"Medium")}${t.duration?` · ${esc(t.duration)} min`:""}</div></div><button class="btn ghost" data-edit-task="${esc(t.id)}">Edit</button><button class="btn danger" data-delete-task="${esc(t.id)}">×</button></div>`).join(""):'<div class="empty">Nothing planned for this date yet. Add a task to get started 🌷</div>';
+  }
+  function renderHabits(){
+    $("habitList").innerHTML=db.habits.length?db.habits.map(h=>{const checked=(h.completedDates||[]).includes(today());return `<div class="card"><div class="row"><div><strong>${esc(h.name||h.title||"Habit")}</strong><div class="small muted">${esc(h.description||"A little practice adds up")}</div></div><div class="actions"><label class="small"><input type="checkbox" data-habit-check="${esc(h.id)}" ${checked?"checked":""}> Today</label><button class="btn danger" data-delete-habit="${esc(h.id)}">×</button></div></div></div>`}).join(""):'<div class="empty">Plant your first habit 🌱</div>';
+  }
+  function renderGoals(){
+    $("goalList").innerHTML=db.goals.length?db.goals.map(g=>`<div class="card"><div class="row"><strong>${esc(g.title)}</strong><span class="pill">${Math.min(100,Math.max(0,Number(g.progress)||0))}%</span></div><p class="muted small">${esc(g.description||"")}</p><div class="progress"><span style="width:${Math.min(100,Math.max(0,Number(g.progress)||0))}%"></span></div><div class="row"><input style="max-width:180px" type="range" min="0" max="100" value="${Math.min(100,Math.max(0,Number(g.progress)||0))}" data-goal-progress="${esc(g.id)}" aria-label="Goal progress"><button class="btn danger" data-delete-goal="${esc(g.id)}">Delete</button></div></div>`).join(""):'<div class="empty">Add a goal that matters to you ✨</div>';
+  }
+  function renderNotes(){
+    $("noteList").innerHTML=db.notes.length?db.notes.map(n=>`<div class="card"><div class="row"><strong>${esc(n.title||"Untitled note")}</strong><div class="actions"><button class="btn ghost" data-edit-note="${esc(n.id)}">Edit</button><button class="btn danger" data-delete-note="${esc(n.id)}">×</button></div></div><p style="white-space:pre-wrap" class="muted">${esc(n.body||n.content||"")}</p><div class="small muted">${esc(n.updatedAt||"")}</div></div>`).join(""):'<div class="empty">Save an idea before it floats away 💭</div>';
+  }
+  function renderProfile(){$("profileName").value=db.profile.name||"";}
+  function taskForm(task={}){
+    openModal(task.id?"Edit task":"Add task",`<div class="field"><label>Task</label><input id="fTitle" maxlength="120" value="${esc(task.title||"")}" placeholder="What would you like to do?"></div><div class="form-grid"><div class="field"><label>Date</label><input id="fDate" type="date" value="${esc(task.date||plannerDate)}"></div><div class="field"><label>Time</label><input id="fTime" type="time" value="${esc(task.time||"") }"></div><div class="field"><label>Duration (minutes)</label><input id="fDuration" type="number" min="5" max="600" value="${esc(task.duration||30)}"></div><div class="field"><label>Priority</label><select id="fPriority"><option ${task.priority==="High"?"selected":""}>High</option><option ${!task.priority||task.priority==="Medium"?"selected":""}>Medium</option><option ${task.priority==="Low"?"selected":""}>Low</option></select></div></div><div class="actions" style="margin-top:14px"><button class="btn primary" id="modalSave">Save task</button></div>`,()=>{
+      const title=$("fTitle").value.trim();if(!title){toast("Please enter a task name.");return false;}
+      const item={...task,id:task.id||uid(),title,date:$("fDate").value||today(),time:$("fTime").value,duration:Number($("fDuration").value)||30,priority:$("fPriority").value,completed:!!task.completed};
+      if(task.id)db.tasks=db.tasks.map(t=>t.id===task.id?item:t);else db.tasks.push(item);
+      saveData();plannerDate=item.date;renderTasks();renderHome();toast("Task saved 🌷");return true;
+    });
+  }
+  function addHabit(){openModal("Add a habit",`<div class="field"><label>Habit name</label><input id="fName" maxlength="80" placeholder="e.g. Read for 10 minutes"></div><div class="field"><label>Why is it important? (optional)</label><input id="fDesc" maxlength="140" placeholder="A small reason to keep going"></div><div class="actions"><button class="btn primary" id="modalSave">Add habit</button></div>`,()=>{const name=$("fName").value.trim();if(!name)return false;db.habits.push({id:uid(),name,description:$("fDesc").value,completedDates:[]});saveData();renderHabits();renderHome();return true;});}
+  function addGoal(){openModal("Add a goal",`<div class="field"><label>Goal</label><input id="fName" maxlength="100" placeholder="What would you like to work towards?"></div><div class="field"><label>Description (optional)</label><textarea id="fDesc" maxlength="500"></textarea></div><div class="actions"><button class="btn primary" id="modalSave">Add goal</button></div>`,()=>{const title=$("fName").value.trim();if(!title)return false;db.goals.push({id:uid(),title,description:$("fDesc").value,progress:0});saveData();renderGoals();renderHome();return true;});}
+  function editNote(note={}){openModal(note.id?"Edit note":"New note",`<div class="field"><label>Title</label><input id="fName" maxlength="100" value="${esc(note.title||"")}" placeholder="Note title"></div><div class="field"><label>Your note</label><textarea id="fBody" maxlength="10000">${esc(note.body||note.content||"")}</textarea></div><div class="actions"><button class="btn primary" id="modalSave">Save note</button></div>`,()=>{const title=$("fName").value.trim();const body=$("fBody").value;if(!title&&!body)return false;const item={...note,id:note.id||uid(),title:title||"Untitled note",body,updatedAt:new Date().toLocaleString()};if(note.id)db.notes=db.notes.map(n=>n.id===note.id?item:n);else db.notes.unshift(item);saveData();renderNotes();return true;});}
+  function generatePlan(){
+    const lines=$("assistTasks").value.split(/\n/).map(s=>s.trim()).filter(Boolean), hours=Math.max(1,Math.min(16,Number($("assistHours").value)||6)), start=$("assistStart").value||"09:00";
+    let tasks=lines.map(line=>{const p=line.split("|").map(x=>x.trim());return {title:p[0],duration:Math.max(5,Math.min(600,Number(p[1])||30)),priority:["High","Medium","Low"].includes(p[2])?p[2]:"Medium"};}).filter(t=>t.title);
+    const rank={High:0,Medium:1,Low:2};tasks.sort((a,b)=>rank[a.priority]-rank[b.priority]);
+    let [hh,mm]=start.split(":").map(Number),cursor=hh*60+mm,remaining=hours*60,work=0;draftSchedule=[];
+    for(const t of tasks){if(work>=50 && remaining>=10){cursor+=10;remaining-=10;draftSchedule.push({break:true,start:cursor-10,duration:10,title:"Break"});work=0;}
+      if(t.duration<=remaining){draftSchedule.push({...t,start:cursor});cursor+=t.duration;remaining-=t.duration;work+=t.duration;}
+    }
+    const placed=new Set(draftSchedule.filter(x=>!x.break).map(x=>x.title));const skipped=tasks.filter(t=>!placed.has(t.title));
+    const fmt=n=>String(Math.floor(n/60)%24).padStart(2,"0")+":"+String(n%60).padStart(2,"0");
+    $("assistantResult").innerHTML=`<div class="row"><h3>Review your suggested day</h3><span class="pill">Demo mode</span></div><p class="small muted">Edit task names or durations below before saving. Breaks are suggested pauses, not appointments.</p>${draftSchedule.map((s,i)=>`<div class="schedule-slot"><div class="row"><strong>${s.break?"☕ Break":esc(s.title)}</strong><span class="small muted">${fmt(s.start)} – ${fmt(s.start+s.duration)}</span></div>${s.break?"10-minute pause":`<div class="small muted">${s.duration} min · ${esc(s.priority)}</div><input aria-label="Edit task title" data-draft-title="${i}" value="${esc(s.title)}" style="width:100%;margin-top:7px;border:1px solid #eee;border-radius:9px;padding:7px"><input aria-label="Edit duration" data-draft-duration="${i}" type="number" min="5" max="600" value="${s.duration}" style="width:90px;margin-top:6px;padding:6px;border:1px solid #eee;border-radius:9px">`}</div>`).join("")||'<div class="empty">No tasks could be scheduled. Add tasks above.</div>'}${skipped.length?`<div class="notice warn"><strong>Not scheduled:</strong> ${skipped.map(s=>esc(s.title)).join(", ")}. Try increasing available hours or reducing durations.</div>`:""}<div class="actions"><button class="btn primary" id="saveSchedule">Save this schedule</button><button class="btn" id="regenerate">Start again</button></div>`;
+    $("assistantResult").dataset.skipped=JSON.stringify(skipped);
+  }
+  function savePlan(){
+    document.querySelectorAll("[data-draft-title]").forEach(el=>{const i=Number(el.dataset.draftTitle);if(draftSchedule[i])draftSchedule[i].title=el.value.trim()||draftSchedule[i].title;});
+    document.querySelectorAll("[data-draft-duration]").forEach(el=>{const i=Number(el.dataset.draftDuration);if(draftSchedule[i])draftSchedule[i].duration=Math.max(5,Math.min(600,Number(el.value)||30));});
+    const date=$("assistDate").value||today();db.dailySchedules=db.dailySchedules||{};db.dailySchedules[date]={items:draftSchedule,unscheduled:JSON.parse($("assistantResult").dataset.skipped||"[]"),savedAt:new Date().toISOString()};saveData();toast("Schedule saved on this device 🌷");
+  }
+  function exportData(){const blob=new Blob([JSON.stringify(db,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="daybloom-backup-"+today()+".json";a.click();URL.revokeObjectURL(url);toast("Backup exported");}
+  function validateImport(data){
+    if(!data||typeof data!=="object"||Array.isArray(data))throw Error("The file must contain a JSON object.");
+    for(const key of ["tasks","habits","notes","goals"])if(data[key]!==undefined&&!Array.isArray(data[key]))throw Error(`The ${key} field must be a list.`);
+    if(data.profile!==undefined&&(typeof data.profile!=="object"||data.profile===null||Array.isArray(data.profile)))throw Error("The profile field is invalid.");
+    for(const key of ["tasks","habits","notes","goals"])if(Array.isArray(data[key])&&data[key].some(x=>!x||typeof x!=="object"||Array.isArray(x)))throw Error(`One or more ${key} entries are invalid.`);
+    return {...defaults(),...data,tasks:data.tasks||[],habits:data.habits||[],notes:data.notes||[],goals:data.goals||[],dailySchedules:data.dailySchedules||{},profile:data.profile||{name:""}};
+  }
+  async function importData(file){
+    try{const parsed=JSON.parse(await file.text()),next=validateImport(parsed);if(!confirm("Import this backup and replace the DayBloom data currently saved in this browser? Export your current data first if you may need it."))return;db=next;saveData();renderAll();toast("Backup imported successfully");}
+    catch(e){alert("Import failed. Your existing DayBloom data has not been changed.\n\n"+e.message);}
+    $("importFile").value="";
+  }
+  function renderAll(){renderHome();renderTasks();renderHabits();renderGoals();renderNotes();renderProfile();}
+  document.addEventListener("click",e=>{
+    const page=e.target.closest("[data-page]");if(page){setPage(page.dataset.page);return;}
+    const b=e.target.closest("button");if(!b)return;
+    if(b.id==="addTaskBtn")taskForm();if(b.id==="addHabitBtn")addHabit();if(b.id==="addGoalBtn")addGoal();if(b.id==="addNoteBtn")editNote();
+    if(b.id==="closeModal")closeModal();if(b.id==="saveProfile"){db.profile.name=$("profileName").value.trim();saveData();renderHome();toast("Profile saved");}
+    if(b.id==="exportData")exportData();if(b.id==="importDataBtn")$("importFile").click();
+    if(b.id==="resetData"){if(confirm("This will permanently remove DayBloom data saved in this browser. Export a backup first. Continue?")&&confirm("Are you absolutely sure?")){localStorage.removeItem(STORAGE_KEY);db=defaults();renderAll();toast("DayBloom data reset");}}
+    if(b.id==="generateSchedule")generatePlan();if(b.id==="saveSchedule")savePlan();if(b.id==="regenerate"){$("assistantResult").innerHTML='<div class="empty">Edit your task list above and create a new suggestion.</div>';draftSchedule=[];}
+    const edit=b.dataset.editTask;if(edit)taskForm(db.tasks.find(t=>t.id===edit)||{});
+    const del=b.dataset.deleteTask;if(del&&confirm("Delete this task?")){db.tasks=db.tasks.filter(t=>t.id!==del);saveData();renderTasks();renderHome();}
+    const dh=b.dataset.deleteHabit;if(dh&&confirm("Delete this habit and its check-ins?")){db.habits=db.habits.filter(x=>x.id!==dh);saveData();renderHabits();renderHome();}
+    const dg=b.dataset.deleteGoal;if(dg&&confirm("Delete this goal?")){db.goals=db.goals.filter(x=>x.id!==dg);saveData();renderGoals();renderHome();}
+    const dn=b.dataset.deleteNote;if(dn&&confirm("Delete this note?")){db.notes=db.notes.filter(x=>x.id!==dn);saveData();renderNotes();}
+    const en=b.dataset.editNote;if(en)editNote(db.notes.find(n=>n.id===en)||{});
+  });
+  document.addEventListener("change",e=>{
+    const t=e.target;
+    if(t.matches("[data-task-check]")){const item=db.tasks.find(x=>x.id===t.dataset.taskCheck);if(item){item.completed=t.checked;saveData();renderTasks();renderHome();}}
+    if(t.matches("[data-habit-check]")){const h=db.habits.find(x=>x.id===t.dataset.habitCheck);if(h){h.completedDates=Array.isArray(h.completedDates)?h.completedDates:[];h.completedDates=t.checked?[...new Set([...h.completedDates,today()])]:h.completedDates.filter(d=>d!==today());saveData();renderHabits();}}
+    if(t.matches("[data-goal-progress]")){const g=db.goals.find(x=>x.id===t.dataset.goalProgress);if(g){g.progress=Number(t.value);saveData();renderGoals();renderHome();}}
+  });
+  $("plannerDate").addEventListener("change",e=>{plannerDate=e.target.value||today();renderTasks();});
+  $("importFile").addEventListener("change",e=>{if(e.target.files[0])importData(e.target.files[0]);});
+  $("todayLabel").textContent=new Date().toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+  $("plannerDate").value=plannerDate;$("assistDate").value=today();renderAll();
+  // Register a same-origin service worker. A new worker waits until the user confirms the update.
+  if("serviceWorker" in navigator && location.protocol==="https:" && !location.hostname.endsWith("github.io") || ("serviceWorker" in navigator && location.protocol==="https:")){
+    navigator.serviceWorker.register("./sw.js").then(reg=>{
+      $("updateStatus").textContent="Offline support is enabled for the app shell.";
+      if(reg.waiting){pendingWorker=reg.waiting;$("updateAppBtn").hidden=false;$("updateStatus").textContent="A DayBloom update is ready. You can install it when convenient.";}
+      reg.addEventListener("updatefound",()=>{const worker=reg.installing;if(worker)worker.addEventListener("statechange",()=>{if(worker.state==="installed"&&navigator.serviceWorker.controller){pendingWorker=worker;$("updateAppBtn").hidden=false;$("updateStatus").textContent="A new update is ready. Your current session will not be interrupted.";}});});
+    }).catch(err=>{$("updateStatus").textContent="Offline support could not be enabled in this browser.";console.warn(err);});
+    navigator.serviceWorker.addEventListener("controllerchange",()=>{if(sessionStorage.getItem("daybloom-update-reload")==="yes"){sessionStorage.removeItem("daybloom-update-reload");location.reload();}});
+  }else{$("updateStatus").textContent="Offline support requires a secure HTTPS website (or localhost during testing).";}
+  $("updateAppBtn").addEventListener("click",()=>{if(pendingWorker&&confirm("Install the DayBloom update now? Save any unfinished edits first.")){sessionStorage.setItem("daybloom-update-reload","yes");pendingWorker.postMessage({type:"SKIP_WAITING"});}});
+  window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();window.deferredInstallPrompt=e;});
+})();
+</script>
+</body>
+</html>
